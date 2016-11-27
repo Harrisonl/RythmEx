@@ -1,0 +1,4 @@
+duration:1.0;mem stats:false;sys mem stats:false
+module;test;tags;iterations;elapsed
+BasicBench	Multiple Process		1	2219434
+BasicBench	Single Process		5	1494244
