@@ -1,8 +1,14 @@
 defmodule Timer do
 
-  def time(func) do
-    {time, x} = :timer.tc(func)
+ def time(func) do
+   {time, x} = :timer.tc(func)
 
-    IO.puts ["Completed in ", "#{time / 1_000_000}", " seconds"]
+   comp = cond do
+     time < 10_000 -> "#{time} microseconds"
+     true -> "#{time / 1_000_000} seconds"
+   end
+
+   IO.puts ["Completed in ", comp, " returned #{x}"]
   end
+
 end

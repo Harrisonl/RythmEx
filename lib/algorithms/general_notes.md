@@ -94,3 +94,4 @@ Insert node at the end, then swim it up.
 ### Delete the maximum in a heap:
 * Exchange root, with the last value added
 * Sink it down until it fits
+
