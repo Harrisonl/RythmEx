@@ -24,9 +24,13 @@ E.g.
 Node | Compare
 --------------
 54   | less
+--------------
 6    | less
+--------------
 1    | greater
+--------------
 4    | found
+--------------
 
 ### Putting in the Tree:
 * Search for the key then either
@@ -138,6 +142,7 @@ Inserting is also faster as none of the subnodes need rearranges.
 * Use internal left-leaning links as glue for 3-nodes
 
 E.g.
+```
    -> X
 ES -> H
    -> A
@@ -150,6 +155,7 @@ S
        -> H
   -> E
        -> A
+```
 
 ###Analysis:
 * No node has two red links connected to it (because 2 key becomes 1 key)
@@ -166,6 +172,7 @@ To represent colors, have and extra bit for the color - red == true, black == fa
 
 E.g. 1 == red 0 == black
 
+```
          -> X
   -> S(1)
          -> P
@@ -181,5 +188,110 @@ S
          -> P
   -> E(0)
          -> C
+```
 
 **Color Flips**
+* Recolor to split a temp 3 key.
+
+**2 Node insert example**
+Example Insert:
+
+```
+c: {
+  b(1): {}
+}
+
+#=> Insert a
+
+c: {
+  b(1): {
+      a(1): {}
+  }
+}
+```
+
+Problem here is that we have two red links in a row (C -> B -> A) which in a two-three tree would mean three nodes
+
+```
+#=> Right rotate
+
+b: {
+  c(1): {}
+  a(1): {}
+}
+
+#=> Color Flip
+b: {
+  c(0): {}
+  a(0): {}
+}
+```
+
+
+**3 Node insert example**
+
+Steps:
+* Do Standard BST insert: Link color red
+* Rotate to balance the 4-node
+* Flip colors to pass red link up
+* rotate to lean left again
+
+```
+
+e: {
+  s(0): {
+    r(1): {}
+  },
+  c(0): {
+    a(1): {}
+  }
+}
+
+#=> insert h
+
+e: {
+  s(0): {
+    r(1): {   <- Two red links in a row X
+      h(1)    <-
+    }
+  },
+  c(0): {
+    a(1): {}
+  }
+}
+
+#=> Rotate Right
+
+e: {
+  r(0): {
+    s(1): {}, <- Need to color flip
+    h(1): {}  <-
+  },
+  c(0): {
+    a(1): {}
+  }
+}
+
+#=> Color Flip
+
+e: {
+  r(1): { <- Red link is leaning the wrong way!
+    s(0): {}, 
+    h(0): {} 
+  },
+  c(0): {
+    a(1): {}
+  }
+}
+
+#=> Rotate left
+
+r: {
+  s(0): {},
+  e(0): {
+    h(0): {}
+    c(0): {
+      a(1): {}
+    }
+  }
+}

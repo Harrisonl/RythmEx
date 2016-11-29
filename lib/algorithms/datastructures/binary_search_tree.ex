@@ -33,7 +33,7 @@ defmodule Algorithms.DataStructures.BST do
   def test_tree do
     tree = new(5_000_000)
 
-    tree2 = 1..10_000_000
+    tree2 = 1..1_000_000
     |> Enum.to_list
     |> Enum.shuffle
     |> Enum.reduce(tree, fn(x, acc) ->
