@@ -1,4 +1,4 @@
-defmodule Algorithms.Searching.BST do
+defmodule Algorithms.DataStructures.BST do
 
   def new(value), do: [[], value, []]
 
