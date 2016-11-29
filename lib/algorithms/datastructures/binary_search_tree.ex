@@ -42,7 +42,7 @@ defmodule Algorithms.DataStructures.BST do
      end)
 
     IO.puts "Started Search"
-    Timer.time(fn -> find(tree2, 7654321) end)
+    Timer.time(fn -> find(tree2, 764321) end)
   end
 
 
